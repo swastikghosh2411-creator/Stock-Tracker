@@ -35,7 +35,8 @@ async function getFromCache(symbol) {
   const ageMinutes = (Date.now() - fetchedAt.getTime()) / 60000;
   if (ageMinutes > CACHE_TTL_MINUTES) return null;
 
-  return result.rows[0].data;
+  const raw = result.rows[0].data;
+return typeof raw === 'string' ? JSON.parse(raw) : raw;
 }
 
 async function saveToCache(symbol, data) {
