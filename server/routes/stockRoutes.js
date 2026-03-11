@@ -1,6 +1,12 @@
 const express = require('express');
 const router  = express.Router();
 const db      = require('../db');
+router.get('/debug', (req, res) => {
+  res.json({
+    hasKey: !!process.env.ALPHA_VANTAGE_KEY,
+    keyStart: process.env.ALPHA_VANTAGE_KEY ? process.env.ALPHA_VANTAGE_KEY.slice(0,4) : 'none'
+  });
+});
 const { getQuote, getHistory } = require('../services/alphaVantage');
 
 // GET /api/stock/:symbol
