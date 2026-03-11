@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StockTrack</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="home-page">
+
+  <nav>
+    <div class="nav-logo">StockTrack</div>
+    <div class="nav-right">
+      <button class="watchlist-btn" onclick="toggleWatchlistPanel()">⊕ Watchlist</button>
+    </div>
+  </nav>
+
+  <div class="watchlist-panel" id="watchlist-panel">
+    <div class="wp-header">
+      <h3>My Watchlist</h3>
+      <button onclick="toggleWatchlistPanel()">✕</button>
+    </div>
+    <div id="watchlist-items"><p class="empty-msg">No stocks added yet.</p></div>
+  </div>
+
+  <main class="home-main">
+    <h1 class="hero-title">Track any stock,<br/>in real time.</h1>
+    <p class="hero-sub">Search by ticker or company name</p>
+
+    <div class="search-wrap">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="e.g. AAPL, Tesla, JPMorgan..."
+        autocomplete="off"
+      />
+      <div class="autocomplete-box" id="autocomplete-box"></div>
+    </div>
+
+    <section class="trending-section">
+      <h2>Trending Today</h2>
+      <div class="trending-list" id="trending-list">
+        <div class="skeleton-chip"></div>
+        <div class="skeleton-chip"></div>
+        <div class="skeleton-chip"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/home.js"></script>
+</body>
+</html>

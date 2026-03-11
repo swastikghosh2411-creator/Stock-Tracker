@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StockTrack</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="stock-page">
+
+  <nav>
+    <a href="/" class="nav-logo">StockTrack</a>
+    <div class="nav-right">
+      <button class="watchlist-btn" onclick="toggleWatchlistPanel()">⊕ Watchlist</button>
+    </div>
+  </nav>
+
+  <div class="watchlist-panel" id="watchlist-panel">
+    <div class="wp-header">
+      <h3>My Watchlist</h3>
+      <button onclick="toggleWatchlistPanel()">✕</button>
+    </div>
+    <div id="watchlist-items"><p class="empty-msg">No stocks added yet.</p></div>
+  </div>
+
+  <main class="stock-main">
+
+    <!-- loading skeleton -->
+    <div id="skeleton" class="skeleton-block">
+      <div class="sk-title"></div>
+      <div class="sk-price"></div>
+      <div class="sk-chart"></div>
+    </div>
+
+    <!-- error state -->
+    <div id="error-state" class="error-state" style="display:none">
+      <div class="error-icon">⚠</div>
+      <h2 id="error-msg">Something went wrong.</h2>
+      <a href="/" class="back-link">← Go back</a>
+    </div>
+
+    <!-- actual content -->
+    <div id="stock-content" style="display:none">
+
+      <div class="stock-header">
+        <div class="stock-header-left">
+          <div class="stock-symbol" id="s-symbol"></div>
+          <div class="stock-name" id="s-name"></div>
+        </div>
+        <button class="add-watchlist-btn" id="watchlist-toggle-btn" onclick="toggleWatchlist()">
+          + Add to Watchlist
+        </button>
+      </div>
+
+      <div class="price-row">
+        <span class="price" id="s-price"></span>
+        <span class="change-badge" id="s-change"></span>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat"><div class="stat-label">Open</div><div class="stat-val" id="s-open"></div></div>
+        <div class="stat"><div class="stat-label">High</div><div class="stat-val" id="s-high"></div></div>
+        <div class="stat"><div class="stat-label">Low</div><div class="stat-val" id="s-low"></div></div>
+        <div class="stat"><div class="stat-label">Prev Close</div><div class="stat-val" id="s-prev"></div></div>
+        <div class="stat"><div class="stat-label">Volume</div><div class="stat-val" id="s-volume"></div></div>
+      </div>
+
+      <div class="chart-section">
+        <div class="range-btns">
+          <button class="range-btn active" data-range="1W">1W</button>
+          <button class="range-btn" data-range="1M">1M</button>
+          <button class="range-btn" data-range="3M">3M</button>
+          <button class="range-btn" data-range="1Y">1Y</button>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="price-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/js/stock.js"></script>
+</body>
+</html>
